@@ -3,7 +3,7 @@ include('db_config.php');
 
 $error = "";
 
-// Handle form submission
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -11,19 +11,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($email && $password) {
         $hashed_password = md5($password);
         
-        // Check user credentials
+
         $query = "SELECT * FROM users WHERE email='$email' AND password='$hashed_password'";
         $result = mysqli_query($connection, $query);
         
         if ($result && mysqli_num_rows($result) > 0) {
             $user = mysqli_fetch_assoc($result);
             
-            // Set session variables
+           
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['user_type'] = $user['user_type'];
             
-            // Redirect to home page
+
             header("Location: index.php");
             exit();
         } else {
