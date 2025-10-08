@@ -1,7 +1,7 @@
 <?php
 include('db_config.php');
 
-// Check if user is logged in and is a poster
+
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 'poster') {
     header("Location: index.php");
     exit();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 'poster') {
 $error = "";
 $success = "";
 
-// Handle form submission
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = $_POST['title'];
     $description = $_POST['description'];
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $price = $_POST['price'];
     $user_id = $_SESSION['user_id'];
     
-    // Handle photo upload
     $photo_path = "";
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
         $upload_dir = "uploads/";
