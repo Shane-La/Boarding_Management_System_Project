@@ -4,7 +4,6 @@ include('db_config.php');
 $error = "";
 $success = "";
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -12,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_type = $_POST['user_type'];
     
     if ($username && $email && $password && $user_type) {
-        // Hash password
+
         $hashed_password = md5($password);
         
-        // Insert user into database
+
         $query = "INSERT INTO users (username, email, password, user_type) VALUES ('$username', '$email', '$hashed_password', '$user_type')";
         $result = mysqli_query($connection, $query);
         
