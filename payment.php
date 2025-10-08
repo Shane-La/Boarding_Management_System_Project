@@ -1,17 +1,17 @@
 <?php
 include('db_config.php');
 
-// Check if user is logged in and is a poster
+
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 'poster') {
     header("Location: index.php");
     exit();
 }
 
-// Get gig ID from URL
+
 $gig_id = $_GET['gig_id'];
 $posting_fee = isset($_GET['fee']) ? $_GET['fee'] : 200; // Fixed posting fee of 200
 
-// Get gig details
+
 $query = "SELECT * FROM gigs WHERE id='$gig_id'";
 $result = mysqli_query($connection, $query);
 
@@ -22,7 +22,7 @@ if (!$result || mysqli_num_rows($result) == 0) {
 
 $gig = mysqli_fetch_assoc($result);
 
-// Handle payment submission
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $card_name = $_POST['card_name'];
     $card_number = $_POST['card_number'];
