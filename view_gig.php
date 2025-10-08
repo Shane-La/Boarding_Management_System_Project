@@ -1,16 +1,13 @@
 <?php
 include('db_config.php');
 
-// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-// Get gig ID from URL
 $gig_id = $_GET['id'];
 
-// Get gig details
 $query = "SELECT gigs.*, users.username, users.email FROM gigs JOIN users ON gigs.user_id = users.id WHERE gigs.id='$gig_id'";
 $result = mysqli_query($connection, $query);
 
